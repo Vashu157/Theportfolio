@@ -32,8 +32,7 @@ const Projects = () => {
                 {String(index + 1).padStart(2, '0')}
               </span>
               <div className="flex gap-4">
-                <a href="#" className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]" aria-label="GitHub Link"><FaGithub size={20} /></a>
-                <a href="#" className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]" aria-label="External Link"><ExternalLink size={20} /></a>
+                <a href="https://github.com/Vashu157" className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]" aria-label="GitHub Link"><FaGithub size={20} /></a>
               </div>
             </div>
             <h3 className="font-[var(--font-playfair)] text-[1.3rem] md:text-[1.5rem] font-bold text-[var(--color-text-primary)] mb-4 leading-[1.3] transition-colors duration-300 group-hover:text-[var(--color-primary-accent)]">{project.title}</h3>
