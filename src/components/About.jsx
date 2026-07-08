@@ -10,13 +10,15 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 border-t border-[var(--color-border)]">
+    <section id="about" className="content-layer py-20 border-t border-[var(--color-border)]">
       <div className="grid md:grid-cols-2 gap-12 items-start">
+        {/* Left column — give it its own stacking context */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          style={{ position: 'relative', zIndex: 1 }}
         >
           <h2 className="text-3xl font-bold mb-6 text-white tracking-tight">Systems Over Applications</h2>
           <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
@@ -39,11 +41,11 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="glass-card p-8 rounded-xl"
         >
-          <h3 className="text-xl font-semibold mb-6 text-white border-b border-gray-800 pb-4">Current Interests</h3>
+          <h3 className="text-xl font-semibold mb-6 text-white border-b border-white/10 pb-4">Current Interests</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {interests.map((interest, idx) => (
-              <div key={idx} className="flex items-center space-x-3 text-gray-300 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.05)] transition-colors">
-                <div className="text-blue-500">
+              <div key={idx} className="flex items-center space-x-3 text-gray-300 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                <div className="text-blue-400">
                   {interest.icon}
                 </div>
                 <span className="font-medium">{interest.label}</span>
@@ -55,7 +57,7 @@ export default function About() {
             <h4 className="text-sm text-gray-500 font-mono mb-3 uppercase tracking-wider">Currently exploring</h4>
             <div className="flex flex-wrap gap-2">
               {['RAG Architecture', 'Vector Databases', 'System Design', 'AST Parsing'].map(tag => (
-                <span key={tag} className="px-3 py-1 bg-gray-900 border border-gray-800 rounded-full text-xs text-gray-400">
+                <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-400">
                   {tag}
                 </span>
               ))}

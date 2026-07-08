@@ -4,12 +4,12 @@ import { Users } from 'lucide-react';
 export default function Leadership() {
   const roles = [
     {
-      title: 'Deputy General Secretary',
+      title: 'Deputy General Secretary | 2024-2026',
       org: 'Tech Club, NIT Delhi',
       desc: 'Orchestrating technical initiatives, hackathons, and coding competitions. Fostering a community of 500+ student developers.'
     },
     {
-      title: 'Senior Member',
+      title: 'Senior Member | 2024 - 2026',
       org: 'Training & Placement Cell, NIT Delhi',
       desc: 'Coordinating placement drives, liaising with recruiters, and organizing technical mock interviews for the student body.'
     }

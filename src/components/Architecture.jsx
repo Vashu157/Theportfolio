@@ -30,7 +30,7 @@ export default function Architecture() {
           <div className="flex flex-col items-center space-y-2">
             {steps.map((step, idx) => (
               <div key={idx} className="flex flex-col items-center w-full">
-                <div className={`w-full max-w-sm px-6 py-4 bg-black border ${step.color} rounded-lg text-center relative z-10 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-shadow`}>
+                <div className={`w-full max-w-sm px-6 py-4 bg-white/6 border ${step.color} rounded-lg text-center relative z-10 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all`}>
                   <div className="font-bold text-white mb-1">{step.name}</div>
                   <div className="text-xs text-gray-500 font-mono">{step.desc}</div>
                 </div>

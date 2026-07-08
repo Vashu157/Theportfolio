@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #000000;
+  --color-bg-primary: #050505;
   --color-bg-secondary: #0a0a0a;
   --color-bg-light: #ffffff;
   --color-text-primary: #ffffff;
@@ -25,11 +25,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-bg-primary);
+    background-color: #050505;
   }
   
   body {
-    background-color: var(--color-bg-primary);
+    background-color: transparent;
     color: var(--color-text-primary);
     min-height: 100vh;
     overflow-x: hidden;
@@ -38,11 +38,6 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Optional subtle grid background for dark mode */
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
   }
 
   ::-webkit-scrollbar {
@@ -79,16 +74,39 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    position: relative;
+    z-index: 1;
   }
 
   .glass-card-light {
-    background: rgba(0, 0, 0, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--color-border-light);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Ensures any text/content layer sits above the fixed background */
+  .content-layer {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes flow {
+    from {
+      offset-distance: 0%;
+    }
+    to {
+      offset-distance: 100%;
+    }
+  }
+
+  .animate-flow {
+    animation: flow var(--duration, 20s) linear infinite;
   }
 }

@@ -49,7 +49,7 @@ export default function TechStack() {
                 {group.items.map(item => (
                   <span 
                     key={item} 
-                    className="px-3 py-1.5 bg-gray-900 border border-gray-800 rounded-md text-sm text-gray-300 hover:border-blue-500/50 hover:text-white transition-colors cursor-default"
+                    className="px-3 py-1.5 bg-white/8 border border-white/12 rounded-md text-sm text-gray-300 hover:border-blue-500/50 hover:text-white transition-colors cursor-default"
                   >
                     {item}
                   </span>

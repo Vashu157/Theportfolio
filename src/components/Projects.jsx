@@ -40,12 +40,12 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.slice(0, 4).map(tech => (
-                      <span key={tech} className="text-xs font-mono text-gray-500 bg-black px-2 py-1 rounded">
+                      <span key={tech} className="text-xs font-mono text-gray-400 bg-white/8 border border-white/10 px-2 py-1 rounded">
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 4 && (
-                      <span className="text-xs font-mono text-gray-500 bg-black px-2 py-1 rounded">
+                      <span className="text-xs font-mono text-gray-400 bg-white/8 border border-white/10 px-2 py-1 rounded">
                         +{project.techStack.length - 4}
                       </span>
                     )}

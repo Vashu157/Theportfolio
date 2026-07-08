@@ -47,6 +47,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-8"
+          style={{ position: 'relative', zIndex: 1 }}
         >
           <div className="space-y-4">
             <motion.div 
