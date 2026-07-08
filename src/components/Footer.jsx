@@ -1,35 +1,36 @@
 import { Mail } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="pt-14 md:pt-20 pb-10 md:pb-12 px-[5%] border-t border-black/5 bg-[#fefae0] mt-16 text-center" id="contact">
-      <div className="max-w-[600px] mx-auto flex flex-col items-center gap-5">
-        <h2 className="font-[var(--font-playfair)] text-[2rem] md:text-[2.5rem] font-bold text-[var(--color-text-primary)] m-0 leading-[1.2]">Let's Connect</h2>
-        <p className="font-[var(--font-inter)] text-[1rem] text-[#555] mb-4">Have a project in mind? Let's talk.</p>
-
-        <a href="mailto:kumarvashu157@gmail.com" className="font-[var(--font-inter)] text-[1rem] md:text-[1.1rem] font-medium text-[var(--color-text-primary)] no-underline transition-colors duration-250 relative hover:text-[var(--color-primary-accent)] after:content-[''] after:absolute after:w-full after:h-[1px] after:bottom-[-3px] after:left-0 after:bg-[var(--color-primary-accent)] after:scale-x-0 after:transition-transform after:duration-250 after:origin-right hover:after:scale-x-100 hover:after:origin-left">
-          kumarvashu157@gmail.com
-        </a>
-
-        <div className="flex gap-6 mt-3">
-          <a href="https://github.com/Vashu157" target="_blank" rel="noopener noreferrer" className="text-[#555] transition-colors duration-250 flex items-center hover:text-[var(--color-primary-accent)]">
-            <FaGithub size={18} />
-          </a>
-          <a href="https://linkedin.com/in/vashukr" target="_blank" rel="noopener noreferrer" className="text-[#555] transition-colors duration-250 flex items-center hover:text-[var(--color-primary-accent)]">
-            <FaLinkedin size={18} />
-          </a>
-          <a href="mailto:kumarvashu157@gmail.com" className="text-[#555] transition-colors duration-250 flex items-center hover:text-[var(--color-primary-accent)]">
-            <Mail size={18} />
-          </a>
+    <footer className="py-12 border-t border-[var(--color-border)] bg-[#050505]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-6 md:mb-0">
+            <span className="text-xl font-bold font-mono tracking-tight text-white">VASHU<span className="text-blue-500">.</span></span>
+            <p className="text-gray-400 mt-2 font-medium">Always building something interesting.</p>
+          </div>
+          
+          <div className="flex space-x-6">
+            <a href="mailto:kumarvashu157@gmail.com" className="text-gray-500 hover:text-white transition-colors">
+              <Mail className="w-6 h-6" />
+              <span className="sr-only">Email</span>
+            </a>
+            <a href="https://github.com/Vashu157/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors">
+              <Github className="w-6 h-6" />
+              <span className="sr-only">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/vashukr/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors">
+              <Linkedin className="w-6 h-6" />
+              <span className="sr-only">LinkedIn</span>
+            </a>
+          </div>
         </div>
-
-        <p className="text-[#888] font-[var(--font-inter)] text-[0.8rem] mt-8 tracking-[0.3px]">
-          &copy; {new Date().getFullYear()} Vashu Kumar. Designed & Built with React & Tailwind CSS.
-        </p>
+        
+        <div className="mt-12 text-center md:text-left text-sm text-gray-600">
+          &copy; {new Date().getFullYear()} Vashu Kumar. Designed for engineering depth.
+        </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

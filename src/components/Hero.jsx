@@ -1,56 +1,121 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { Download, ChevronRight } from 'lucide-react';
+import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 
-const Hero = () => {
+const TerminalAnimation = () => {
+  const [text, setText] = useState('');
+  const fullText = "import { engineer } from 'vashu';\n\nawait engineer.build({\n  systems: 'scalable',\n  ai: 'integrated',\n  impact: 'global'\n});";
+
+  useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      setText(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(timer);
+    }, 40);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-start relative overflow-hidden px-[5%] max-w-[1100px] mx-auto" id="home">
-      {/* Decorative background elements */}
-      <div className="hidden md:block absolute -right-[80px] top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border-[1.5px] border-black/5 pointer-events-none z-0" />
-      <div className="hidden md:block absolute -right-[30px] top-1/2 -translate-y-[45%] w-[280px] h-[280px] rounded-full border border-[rgba(221,161,94,0.12)] pointer-events-none z-0" />
-
-      <motion.div
-        className="text-left max-w-[680px] z-10 relative"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        <span className="block w-[40px] h-[2px] bg-[var(--color-primary-accent)] mb-5 rounded-[1px]" />
-
-        <p className="text-[0.95rem] text-[var(--color-primary-accent)] mb-4 font-[var(--font-plex)] tracking-[1.5px] font-medium">
-          Hi, my name is
-        </p>
-
-        <h1 className="font-[var(--font-playfair)] text-[3rem] md:text-[5rem] font-bold mb-3 leading-[1.05] text-[var(--color-primary-accent)]">
-          Vashu Kumar.
-        </h1>
-
-        <h2 className="font-[var(--font-playfair)] text-[1.35rem] md:text-[1.75rem] font-semibold mb-7 text-[var(--color-text-secondary)] leading-[1.35]">
-          Full-Stack Developer &amp; AI Enthusiast <br />
-          <span className="text-[1.1rem] text-[var(--color-primary-accent)]">
-            CSE &rsquo;27 at NIT Delhi
-          </span>
-        </h2>
-
-        <p className="text-[1.05rem] text-[var(--color-text-secondary)] mb-11 leading-[1.7] max-w-[500px] font-light">
-          Building scalable web architectures and intelligent computer vision
-          applications. I specialize in creating robust digital experiences with
-          modern technologies.
-        </p>
-
-        <div className="flex flex-col md:flex-row gap-5 justify-start items-start md:items-center">
-          <a href="#projects" className="w-full md:w-auto">
-            <button className="w-full md:w-auto inline-block bg-transparent text-[var(--color-text-primary)] border-[1.5px] border-[var(--color-text-primary)] px-8 py-3 rounded-full font-[var(--font-inter)] font-medium text-[0.95rem] cursor-pointer transition-all duration-250 hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg-primary)] hover:scale-105">
-              View Projects
-            </button>
-          </a>
-          <a href="#contact" className="w-full md:w-auto">
-            <button className="w-full md:w-auto inline-block bg-transparent text-[var(--color-primary-accent)] border-[1.5px] border-[var(--color-primary-accent)] px-8 py-3 rounded-full font-[var(--font-inter)] font-medium text-[0.95rem] cursor-pointer transition-all duration-250 hover:bg-[var(--color-primary-accent)] hover:text-white hover:scale-105">
-              Contact Me
-            </button>
-          </a>
-        </div>
-      </motion.div>
-    </section>
+    <div className="glass-card rounded-lg p-4 font-mono text-sm sm:text-base text-gray-300 w-full h-48 flex flex-col relative overflow-hidden group">
+      <div className="flex space-x-2 mb-4">
+        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+      <div className="whitespace-pre-wrap">
+        {text}
+        <motion.span 
+          animate={{ opacity: [1, 0] }} 
+          transition={{ repeat: Infinity, duration: 0.8 }}
+          className="inline-block w-2 h-4 bg-blue-500 ml-1 align-middle"
+        />
+      </div>
+      <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+    </div>
   );
 };
 
-export default Hero;
+export default function Hero() {
+  return (
+    <section className="min-h-[85vh] flex flex-col justify-center pt-10" id="hero">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-8"
+        >
+          <div className="space-y-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              <span>Available for Internships</span>
+            </motion.div>
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              Building Scalable Backend Systems & <span className="text-gradient-accent">AI-Powered Developer Tools</span>
+            </h1>
+            <p className="text-xl text-gray-400 max-w-lg leading-relaxed">
+              Computer Science undergraduate at NIT Delhi specializing in Backend Engineering, Distributed Systems, and Applied AI.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-4 pt-2">
+            <a href="#projects" className="px-6 py-3 bg-white text-black font-medium rounded hover:bg-gray-200 transition-colors inline-flex items-center group">
+              View Projects
+              <ChevronRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a href="/resume.pdf" target="_blank" className="px-6 py-3 border border-gray-700 text-white font-medium rounded hover:bg-gray-800 transition-colors inline-flex items-center">
+              <Download className="mr-2 w-4 h-4" />
+              Resume
+            </a>
+            <a href="https://github.com/Vashu157/" target="_blank" rel="noreferrer" className="p-3 border border-gray-700 text-gray-300 rounded hover:text-white hover:bg-gray-800 transition-colors">
+              <Github className="w-5 h-5" />
+            </a>
+            <a href="https://www.linkedin.com/in/vashukr/" target="_blank" rel="noreferrer" className="p-3 border border-gray-700 text-gray-300 rounded hover:text-white hover:bg-gray-800 transition-colors">
+              <Linkedin className="w-5 h-5" />
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="space-y-6"
+        >
+          <TerminalAnimation />
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="glass-card p-6 rounded-lg hover:border-gray-500 transition-colors">
+              <div className="text-3xl font-bold text-white mb-1">600+</div>
+              <div className="text-sm text-gray-400 font-medium">DSA Problems</div>
+            </div>
+            <div className="glass-card p-6 rounded-lg hover:border-gray-500 transition-colors">
+              <div className="text-3xl font-bold text-white mb-1">4+</div>
+              <div className="text-sm text-gray-400 font-medium">Major Projects</div>
+            </div>
+            <div className="glass-card p-6 rounded-lg hover:border-gray-500 transition-colors">
+              <div className="text-lg font-bold text-white mb-1">Backend + AI</div>
+              <div className="text-sm text-gray-400 font-medium">Core Focus</div>
+            </div>
+            <div className="glass-card p-6 rounded-lg hover:border-gray-500 transition-colors">
+              <div className="text-lg font-bold text-white mb-1">NIT Delhi</div>
+              <div className="text-sm text-gray-400 font-medium">CSE '27</div>
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}

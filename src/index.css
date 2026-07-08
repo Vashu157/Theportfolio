@@ -1,25 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #fefae0;
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0a0a0a;
   --color-bg-light: #ffffff;
-  --color-text-primary: #000000;
-  --color-text-secondary: #444444;
-  --color-primary-accent: #dda15e;
-  --color-border: rgba(0, 0, 0, 0.08);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  --color-text-dark: #000000;
+  --color-primary-accent: #2563eb; /* Subtle blue */
+  --color-primary-accent-hover: #3b82f6;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(0, 0, 0, 0.1);
 
-  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(180, 140, 80, 0.03);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(180, 140, 80, 0.04);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(180, 140, 80, 0.05);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 15px rgba(37, 99, 235, 0.3);
 
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-playfair: 'Playfair Display', Georgia, serif;
   --font-plex: 'IBM Plex Mono', monospace;
+  --font-playfair: 'Playfair Display', Georgia, serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-bg-primary);
   }
   
   body {
@@ -27,17 +33,20 @@
     color: var(--color-text-primary);
     min-height: 100vh;
     overflow-x: hidden;
-    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
     font-family: var(--font-inter);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Optional subtle grid background for dark mode */
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
   
   ::-webkit-scrollbar-track {
@@ -45,11 +54,41 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background: var(--color-primary-accent);
-    border-radius: 3px;
+    background: #333333;
+    border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-primary);
+    background: var(--color-primary-accent);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to right, #ffffff, #a1a1aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-accent {
+    background: linear-gradient(to right, var(--color-primary-accent), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+  }
+
+  .glass-card-light {
+    background: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border-light);
   }
 }

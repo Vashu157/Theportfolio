@@ -1,52 +1,65 @@
-import { ExternalLink } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+import { projects } from '../data/projects';
 
-const Projects = () => {
-  const projects = [
-    {
-      title: 'Capable',
-      description: 'Assistive Mobility App: Engineered a real-time computer vision engine to identify dynamic obstacles for visually impaired users. Architected offline turn-by-turn navigation via GraphHopper and OpenStreetMap.',
-      tech: ['Kotlin', 'YOLOv8', 'MiDaS', 'GraphHopper'],
-    },
-    {
-      title: 'RideIt',
-      description: 'Full-Stack Ride-booking Platform: Built a scalable platform with state management. Designed an ACID-compliant digital wallet using Prisma transactions and NextAuth.js connected to Neon PostgreSQL.',
-      tech: ['Next.js', 'TypeScript', 'Zustand', 'Prisma', 'PostgreSQL'],
-    },
-  ];
-
+export default function Projects() {
   return (
-    <section className="py-[120px] px-[5%] max-w-[1100px] mx-auto" id="projects">
-      <h2 className="font-[var(--font-playfair)] text-[2.5rem] font-bold mb-14 text-left relative inline-block after:content-[''] after:block after:w-[40px] after:h-[2px] after:bg-[var(--color-primary-accent)] after:mt-2.5 after:rounded-[1px] text-[var(--color-primary-accent)]">
-        Featured Projects
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-10">
-        {projects.map((project, index) => (
-          <div 
-            key={index} 
-            className="p-8 md:p-10 flex flex-col h-full relative overflow-hidden border-b-[3px] border-transparent transition-all duration-300 hover:-translate-y-1 hover:border-b-[var(--color-primary-accent)] bg-[var(--color-bg-light)] border border-[var(--color-border)] shadow-[var(--shadow-md)] rounded-[16px] group"
-          >
-            <div className="flex justify-between items-center mb-7">
-              <span className="font-[var(--font-playfair)] text-[1.1rem] font-bold text-[var(--color-primary-accent)] tracking-[0.02em]">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <div className="flex gap-4">
-                <a href="https://github.com/Vashu157" className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]" aria-label="GitHub Link"><FaGithub size={20} /></a>
-              </div>
-            </div>
-            <h3 className="font-[var(--font-playfair)] text-[1.3rem] md:text-[1.5rem] font-bold text-[var(--color-text-primary)] mb-4 leading-[1.3] transition-colors duration-300 group-hover:text-[var(--color-primary-accent)]">{project.title}</h3>
-            <p className="font-[var(--font-inter)] text-[var(--color-text-secondary)] text-[0.95rem] leading-[1.7] flex-grow mb-7">{project.description}</p>
-            <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0">
-              {project.tech.map((tech, i) => (
-                <li className="font-[var(--font-inter)] text-[0.8rem] font-medium text-[var(--color-text-secondary)] bg-[#fefae0] border border-black/10 rounded-full px-3.5 py-1 whitespace-nowrap" key={i}>{tech}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+    <section id="projects" className="py-20 border-t border-[var(--color-border)]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-baseline justify-between mb-12">
+          <h2 className="text-3xl font-bold text-white tracking-tight">Major Projects</h2>
+          <span className="text-gray-500 font-mono text-sm hidden sm:block">Building for scale</span>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project, idx) => (
+            <Link key={project.id} to={`/project/${project.id}`}>
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="group h-full glass-card p-8 rounded-xl flex flex-col justify-between cursor-pointer border border-gray-800 hover:border-blue-500/50 transition-all duration-300"
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    {project.featured && (
+                      <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider rounded-full border border-blue-500/20">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-400 mb-6 line-clamp-2 leading-relaxed">
+                    {project.overview}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.techStack.slice(0, 4).map(tech => (
+                      <span key={tech} className="text-xs font-mono text-gray-500 bg-black px-2 py-1 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="text-xs font-mono text-gray-500 bg-black px-2 py-1 rounded">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="flex items-center text-blue-500 font-medium mt-4 group-hover:translate-x-2 transition-transform">
+                  View Architecture & Details <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+              </motion.div>
+            </Link>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
-};
-
-export default Projects;
+}

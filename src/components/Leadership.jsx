@@ -1,40 +1,49 @@
-const Leadership = () => {
+import { motion } from 'framer-motion';
+import { Users } from 'lucide-react';
+
+export default function Leadership() {
   const roles = [
     {
-      role: 'Deputy General Secretary',
-      organization: 'Upvision (Tech Club) at NIT Delhi'
+      title: 'Deputy General Secretary',
+      org: 'Tech Club, NIT Delhi',
+      desc: 'Orchestrating technical initiatives, hackathons, and coding competitions. Fostering a community of 500+ student developers.'
     },
     {
-      role: 'Placement Coordinator',
-      organization: "CSE '27 batch"
-    },
-    {
-      role: 'Lead Organizer',
-      organization: '"Build with TRAE" Hackathon and the "Bellatrix" 24-hour hackathon'
+      title: 'Senior Member',
+      org: 'Training & Placement Cell, NIT Delhi',
+      desc: 'Coordinating placement drives, liaising with recruiters, and organizing technical mock interviews for the student body.'
     }
   ];
 
   return (
-    <section className="py-[120px] px-[5%] max-w-[1100px] mx-auto" id="leadership">
-      <h2 className="font-[var(--font-playfair)] text-[2.5rem] font-bold mb-14 text-left relative inline-block after:content-[''] after:block after:w-[40px] after:h-[2px] after:bg-[var(--color-primary-accent)] after:mt-2.5 after:rounded-[1px] text-[var(--color-primary-accent)]">
-        Leadership & Extracurriculars
-      </h2>
-
-      <div className="flex flex-col max-w-[720px] mx-auto">
-        {roles.map((item, index) => (
-          <div key={index} className="py-[1.5rem] md:py-[2rem] flex items-start gap-[1.25rem] md:gap-[2rem] border-b border-black/10 last:border-b-0 transition-transform duration-300 hover:translate-x-1.5 group">
-            <span className="font-[var(--font-playfair)] text-[2rem] md:text-[2.5rem] font-bold text-black/10 leading-none shrink-0 min-w-[44px] md:min-w-[56px] transition-colors duration-300 select-none group-hover:text-[var(--color-primary-accent)]">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <div className="flex-grow pt-1">
-              <h3 className="font-[var(--font-playfair)] text-[1.15rem] md:text-[1.3rem] font-semibold text-[var(--color-text-primary)] mb-1.5 leading-[1.3]">{item.role}</h3>
-              <p className="font-[var(--font-inter)] text-[0.95rem] text-[#555] leading-[1.5]">{item.organization}</p>
+    <section className="py-20 border-t border-[var(--color-border)]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-center mb-10">
+          <Users className="w-6 h-6 text-blue-500 mr-3" />
+          <h2 className="text-3xl font-bold text-white tracking-tight">Leadership & Community</h2>
+        </div>
+        
+        <div className="space-y-6">
+          {roles.map((role, idx) => (
+            <div key={idx} className="glass-card p-6 md:p-8 rounded-xl border border-gray-800">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">{role.title}</h3>
+                  <div className="text-blue-400 font-medium">{role.org}</div>
+                </div>
+              </div>
+              <p className="text-gray-400 leading-relaxed max-w-3xl">
+                {role.desc}
+              </p>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
-};
-
-export default Leadership;
+}
